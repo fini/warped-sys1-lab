@@ -1,0 +1,125 @@
+:root {
+	--bg: #000;
+	--panel: rgba(0, 12, 3, 0.82);
+	--panel-solid: #010a03;
+	--line: rgba(0, 255, 65, 0.22);
+	--line-strong: rgba(0, 255, 65, 0.55);
+	--green: #00ff41;
+	--green-dim: #00b32d;
+	--green-faint: rgba(0, 255, 65, 0.08);
+	--text: #b8ffc8;
+	--muted: #4f8a5c;
+	--red: #ff3355;
+	--amber: #ffcc33;
+	--glow: 0 0 6px rgba(0, 255, 65, 0.6);
+	--mono: 'Share Tech Mono', 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--mono);
+	font-size: 13px;
+	overflow: hidden;
+}
+
+/* CRT scanlines over everything, never intercepting input. */
+body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 1000;
+	background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 2px, rgba(0, 0, 0, 0.18) 2px 3px);
+}
+
+::selection {
+	background: rgba(0, 255, 65, 0.35);
+	color: #fff;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	background: transparent;
+	border: 1px solid var(--line-strong);
+	color: var(--green);
+	padding: 4px 10px;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 11px;
+	transition:
+		background 0.12s,
+		box-shadow 0.12s;
+}
+button:hover:not(:disabled) {
+	background: var(--green-faint);
+	box-shadow: var(--glow);
+}
+button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+button.primary {
+	background: rgba(0, 255, 65, 0.15);
+	border-color: var(--green);
+	text-shadow: var(--glow);
+}
+button.danger {
+	color: var(--red);
+	border-color: rgba(255, 51, 85, 0.6);
+}
+button.icon {
+	border: none;
+	padding: 2px 5px;
+	font-size: 12px;
+}
+
+input,
+select {
+	background: #000;
+	border: 1px solid var(--line-strong);
+	padding: 4px 8px;
+	outline: none;
+}
+input:focus,
+select:focus {
+	border-color: var(--green);
+	box-shadow: var(--glow);
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 255, 65, 0.25);
+}
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 255, 65, 0.45);
+}
+
+.glow {
+	color: var(--green);
+	text-shadow: var(--glow);
+}
+.muted {
+	color: var(--muted);
+}

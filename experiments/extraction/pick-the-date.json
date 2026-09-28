@@ -1,0 +1,25 @@
+{
+  "name": "Select, don't generate: the deadline",
+  "description": "Code finds candidate dates in the email; Jev picks the one that is the actual payment deadline. Choice labels are the candidates, so the answer is always a real span. The candidate labels match the starting input set (invoice-email); for another email, replace them with the dates found in it.",
+  "state": {
+    "email": "${email}"
+  },
+  "questions": {
+    "deadline": {
+      "type": "choice",
+      "instructions": "Which of the candidate dates found in `email` is the payment deadline?",
+      "criteria": {
+        "3 March": "Candidate from `email`",
+        "1 March": "Candidate from `email`",
+        "31 March": "Candidate from `email`",
+        "15 April": "Candidate from `email`",
+        "2 May": "Candidate from `email`",
+        "none": "None of the candidates is a payment deadline"
+      }
+    },
+    "hasLateFee": {
+      "type": "noul",
+      "instructions": "Does `email` say a late fee applies if payment is late?"
+    }
+  }
+}

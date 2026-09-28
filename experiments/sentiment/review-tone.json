@@ -1,0 +1,28 @@
+{
+  "name": "Product review sentiment",
+  "description": "Sentiment as a 5-level score plus a sarcasm check. Mixed and sarcastic reviews are the interesting ones. Pick a review from the input sets (gushing, sarcastic, mixed, flat) or paste your own.",
+  "state": {
+    "review": "${review}"
+  },
+  "questions": {
+    "sentiment": {
+      "type": "score",
+      "instructions": "What is the overall sentiment of `review` towards the product?",
+      "criteria": [
+        "Very negative: would warn others away",
+        "Negative: disappointed overall",
+        "Mixed or neutral",
+        "Positive: satisfied overall",
+        "Very positive: enthusiastic recommendation"
+      ]
+    },
+    "sarcastic": {
+      "type": "noul",
+      "instructions": "Is `review` sarcastic, i.e. does its literal wording mean the opposite of what the writer intends?"
+    },
+    "wouldBuyAgain": {
+      "type": "noul",
+      "instructions": "Does the writer of `review` indicate they would buy this product again?"
+    }
+  }
+}

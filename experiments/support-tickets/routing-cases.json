@@ -1,0 +1,32 @@
+{
+  "name": "Department routing: batch",
+  "description": "Same questions run over several tickets via `cases`. Good for eyeballing consistency and calibration.",
+  "model": "jev-latest",
+  "questions": {
+    "department": {
+      "type": "choice",
+      "instructions": "Which team should handle `ticket`?",
+      "criteria": {
+        "billing": "Payments, invoices, refunds, charges",
+        "technical": "Bugs, outages, errors, integrations",
+        "sales": "Pricing, upgrades, new accounts, quotes",
+        "none": "Spam, or not a support request at all"
+      }
+    },
+    "isUrgent": {
+      "type": "noul",
+      "instructions": "Does `ticket` convey urgency?",
+      "criteria": {
+        "true": "Explicitly time-sensitive, or business is blocked",
+        "false": "No urgency expressed"
+      }
+    }
+  },
+  "cases": [
+    { "name": "payouts failing", "state": { "ticket": "Help! My payouts have been failing for 3 days and my vendors are furious." } },
+    { "name": "enterprise quote", "state": { "ticket": "We're a team of 400. Could you send a quote for the enterprise plan sometime next month?" } },
+    { "name": "webhook 500s", "state": { "ticket": "Your webhook endpoint returns HTTP 500 for every event since this morning's deploy." } },
+    { "name": "invoice copy", "state": { "ticket": "Could I get a PDF copy of last quarter's invoice for our accountant? No rush." } },
+    { "name": "spam", "state": { "ticket": "Congratulations!!! You have WON a free cruise, click here to claim." } }
+  ]
+}

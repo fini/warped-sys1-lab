@@ -1,0 +1,29 @@
+{
+  "name": "warp-sys-one",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --host 127.0.0.1 --port 5173",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node --env-file-if-exists=.env build",
+    "prepare": "svelte-kit sync || echo ''",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "run-exp": "tsx scripts/run-exp.ts"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "^0.6.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^5.5.7",
+    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@types/node": "^22.0.0",
+    "svelte": "^5.57.1",
+    "svelte-check": "^4.7.6",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.1"
+  }
+}

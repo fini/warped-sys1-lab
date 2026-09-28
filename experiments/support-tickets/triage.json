@@ -1,0 +1,43 @@
+{
+  "name": "Ticket triage",
+  "description": "Mixed primitives over one support ticket: a noul, a choice and two scores. Mirrors the SDK demo. Fill `${subject}` and `${body}` from an input set (starting set: double-charge).",
+  "model": "jev-latest",
+  "state": {
+    "subject": "${subject}",
+    "body": "${body}"
+  },
+  "questions": {
+    "isBilling": {
+      "type": "noul",
+      "instructions": "Is this ticket (`subject` and `body`) about billing or payments?"
+    },
+    "tone": {
+      "type": "choice",
+      "instructions": "What is the customer's tone in `body`?",
+      "criteria": {
+        "calm": "Neutral or polite, no visible frustration",
+        "frustrated": "Annoyed or impatient, but still civil",
+        "angry": "Hostile, insulting or threatening"
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgently does this ticket need a response?",
+      "criteria": [
+        "Can wait a week or more",
+        "Should be handled this week",
+        "Should be handled today",
+        "Needs attention right now"
+      ]
+    },
+    "refundRisk": {
+      "type": "score",
+      "instructions": "How likely is the customer to demand a refund?",
+      "criteria": [
+        "Unlikely",
+        "Possible",
+        "Likely"
+      ]
+    }
+  }
+}
