@@ -2,13 +2,13 @@
 
 A local workbench for experimenting with [TypeSafe](https://docs.typesafe.ai/introduction)'s System One model **Jev**.
 
-
+## Video Demo
 https://github.com/user-attachments/assets/22131a25-0741-4ac4-9eb0-8bc04c8c685c
 
-
+## Screenshot 1
 ![Sentiment experiment: a score and two yes/no questions over a product review, with four input sets](media/jev_warped_experiments_screenshot_001.png)
 
-
+## Screenshot 2
 ![Ticket triage experiment: yes/no, choice and score answers for a support ticket filled from an input set](media/jev_warped_experiments_screenshot_002.png)
 
 
