@@ -2,6 +2,10 @@
 
 A local workbench for experimenting with [TypeSafe](https://docs.typesafe.ai/introduction)'s System One model **Jev**.
 
+![Sentiment experiment: a score and two yes/no questions over a product review, with four input sets](media/jev_warped_experiments_screenshot_001.png)
+
+![Ticket triage experiment: yes/no, choice and score answers for a support ticket filled from an input set](media/jev_warped_experiments_screenshot_002.png)
+
 An experiment is a JSON file: a piece of **state** (the text or data to judge) plus a set of **questions** about it.
 Jev answers every question with calibrated probabilities instead of free text. The lab lets you organise
 experiments in projects, edit them with live validation, paste inputs, run them, and compare past runs,
@@ -19,6 +23,7 @@ from a Matrix-style SvelteKit UI or from the terminal.
   - [Full example](#full-example)
 - [CLI](#cli)
 - [Private experiments](#private-experiments)
+- [Releases](#releases)
 - [Files and layout](#files-and-layout)
 - [HTTP API](#http-api)
 
@@ -272,7 +277,7 @@ experiments_private/<project>/_inputs/<set>.json
 ```
 
 - The folder is gitignored, so nothing in it is ever committed. Their runs go to `results/`, which is gitignored too.
-- The UI lists private projects with a 🔒 and an amber name; the CLI list marks them `(private)`.
+- The UI lists private projects with a green lock icon; the CLI list marks them `(private)`.
   Otherwise they work like any other project: edit, run, input sets, history.
 - **+ PROJECT** asks whether the new project is public or private.
 - The app never moves or copies experiments between the two folders; moving or duplicating across them is
@@ -280,6 +285,30 @@ experiments_private/<project>/_inputs/<set>.json
   to publish it.
 - Project names are unique across both folders. If the same name exists in both, the private one is shown.
 - Moving a project that was already committed does not remove it from git history.
+
+## Releases
+
+The version lives in `package.json` and follows [semver](https://semver.org): **patch** for fixes, **minor** for
+new features, **major** for breaking changes to the experiment format, the CLI or the API.
+
+```sh
+npm run release:patch    # 0.1.0 → 0.1.1
+npm run release:minor    # 0.1.0 → 0.2.0
+npm run release:major    # 0.1.0 → 1.0.0
+npm version 0.3.0-rc.1   # any explicit version, e.g. a pre-release
+```
+
+Each of these:
+
+1. checks you are on `master`, the working tree is clean and you are not behind `origin/master`;
+2. runs `npm run check` and `npm run build`;
+3. bumps `package.json` and `package-lock.json`, commits `Release vX.Y.Z` and tags `vX.Y.Z`;
+4. pushes `master` and the tag.
+
+The tag triggers `.github/workflows/release.yml`, which checks and builds again and publishes a GitHub Release
+with notes generated from the commits since the previous tag. Versions with a `-` (e.g. `-rc.1`) are marked as
+pre-releases. If a step fails before the push, nothing leaves your machine; undo a local bump with
+`git tag -d vX.Y.Z && git reset --hard HEAD~1`.
 
 ## Files and layout
 
@@ -289,6 +318,8 @@ experiments/<project>/_inputs/<set>.json   # input sets for ${…} placeholders,
 experiments_private/<project>/…            # same layout, gitignored (see Private experiments)
 results/<project>/<experiment>/<run>.json  # every run, saved automatically (gitignored)
 scripts/run-exp.ts                         # CLI runner
+scripts/release-check.ts                   # pre-release guard (see Releases)
+.github/workflows/release.yml              # publishes a GitHub Release for each vX.Y.Z tag
 src/lib/inputs.ts                          # ${…} inputs and #{…} vars (shared by UI, server, CLI)
 src/lib/views.ts                           # view matching and ranking (shared by UI and CLI)
 src/lib/validate.ts                        # experiment validation

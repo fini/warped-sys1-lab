@@ -54,8 +54,15 @@
 					<button class="icon toggle" onclick={() => (collapsed[p.project] = !collapsed[p.project])}>
 						{collapsed[p.project] ? '▸' : '▾'}
 					</button>
-					{#if p.private}<span class="lock" title="private: experiments_private/, never committed">🔒</span>{/if}
-					<span class="pname" class:private={p.private} title={p.private ? `${p.project} (private: experiments_private/, never committed)` : p.project}>{p.project}/</span>
+					{#if p.private}
+						<svg class="lock" viewBox="0 0 12 14" width="10" height="12" aria-label="private">
+							<title>private: experiments_private/, never committed</title>
+							<path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="currentColor" stroke-width="1.4" />
+							<rect x="1" y="6" width="10" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="1.4" />
+							<rect x="5.3" y="8.5" width="1.4" height="2" fill="currentColor" />
+						</svg>
+					{/if}
+					<span class="pname" title={p.private ? `${p.project} (private: experiments_private/, never committed)` : p.project}>{p.project}/</span>
 					<span class="count muted">{p.experiments.length}</span>
 					<span class="tools">
 						<button class="icon" title="New experiment in {p.project}" onclick={() => onaction({ kind: 'new-experiment', project: p.project })}>+</button>
@@ -134,12 +141,11 @@
 		white-space: nowrap;
 		letter-spacing: 0.04em;
 	}
-	.pname.private {
-		color: var(--amber);
-	}
 	.lock {
-		font-size: 10px;
-		margin-right: 4px;
+		flex-shrink: 0;
+		margin-right: 5px;
+		color: var(--green);
+		filter: drop-shadow(0 0 3px rgba(0, 255, 65, 0.6));
 	}
 	.count {
 		font-size: 10px;

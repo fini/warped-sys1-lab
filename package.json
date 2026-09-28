@@ -10,7 +10,12 @@
     "start": "node --env-file-if-exists=.env build",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "run-exp": "tsx scripts/run-exp.ts"
+    "run-exp": "tsx scripts/run-exp.ts",
+    "preversion": "tsx scripts/release-check.ts && npm run check && npm run build",
+    "postversion": "git push --follow-tags origin master",
+    "release:patch": "npm version patch",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0"
