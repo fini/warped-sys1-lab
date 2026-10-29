@@ -1,11 +1,10 @@
-import { text } from '@sveltejs/kit';
-import { handle } from '$lib/server/http';
-import { deleteExperiment, readExperimentRaw, writeExperiment } from '$lib/server/store';
+import { handle } from '#lib/server/http.ts';
+import { deleteExperiment, readExperimentRaw, writeExperiment } from '#lib/server/store.ts';
 
 /** Returns the file as-is so formatting and key order are preserved in the editor. */
 export const GET = ({ params }) =>
 	handle(async () =>
-		text(await readExperimentRaw(params.project, params.name), {
+		new Response(await readExperimentRaw(params.project, params.name), {
 			headers: { 'content-type': 'application/json' }
 		})
 	);

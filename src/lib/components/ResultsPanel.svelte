@@ -3,10 +3,10 @@
 	import ChoiceAnswer from './answers/ChoiceAnswer.svelte';
 	import ScoreAnswer from './answers/ScoreAnswer.svelte';
 	import ViewSummary from './ViewSummary.svelte';
-	import { show } from '$lib/format';
-	import { viewRows } from '$lib/views';
-	import { expandVars } from '$lib/inputs';
-	import type { ChoiceQuestion, ResultSummary, RunResult } from '$lib/types';
+	import { show } from '#lib/format.ts';
+	import { viewRows } from '#lib/views.ts';
+	import { expandVars } from '#lib/inputs.ts';
+	import type { ChoiceQuestion, ResultSummary, RunResult } from '#lib/types.ts';
 
 	let {
 		result,
@@ -37,13 +37,14 @@
 		if (!result) return null;
 		const ok = result.runs.filter((r) => r.usage);
 		return {
-			in: ok.reduce((s, r) => s + r.usage!.input_tokens, 0),
-			out: ok.reduce((s, r) => s + r.usage!.output_tokens, 0),
+			in: ok.reduce((s, r) => s + (r.usage!.input_tokens ?? 0), 0),
+			out: ok.reduce((s, r) => s + (r.usage!.output_tokens ?? 0), 0),
 			errors: result.runs.length - ok.length
 		};
 	});
 
-	const when = (iso: string) => new Date(iso).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'medium' });
+	// sv-SE yields local-time "YYYY-MM-DD HH:mm:ss" regardless of browser language.
+	const when = (iso: string) => new Date(iso).toLocaleString('sv-SE');
 </script>
 
 <div class="results">
@@ -163,7 +164,8 @@
 	header select {
 		max-width: 220px;
 		font-size: 11px;
-		padding: 3px 4px;
+		padding-block: 3px;
+		padding-left: 4px;
 	}
 	.spacer {
 		flex: 1;

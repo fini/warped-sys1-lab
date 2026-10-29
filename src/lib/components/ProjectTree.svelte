@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ProjectNode } from '$lib/types';
+	import type { ProjectNode } from '#lib/types.ts';
 
 	export type TreeAction =
 		| { kind: 'open'; project: string; name: string }
@@ -151,7 +151,7 @@
 		font-size: 10px;
 	}
 	.toggle {
-		width: 18px;
+		width: 22px;
 		padding: 0;
 	}
 	.exps li {

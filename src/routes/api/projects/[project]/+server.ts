@@ -1,5 +1,5 @@
-import { handle, readBody } from '$lib/server/http';
-import { deleteProject, renameProject } from '$lib/server/store';
+import { handle, readBody } from '#lib/server/http.ts';
+import { deleteProject, renameProject } from '#lib/server/store.ts';
 
 export const PATCH = ({ params, request }) =>
 	handle(async () => {

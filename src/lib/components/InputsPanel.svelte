@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { InputValues } from '$lib/types';
+	import type { InputValues } from '#lib/types.ts';
 
 	let {
 		names,
@@ -97,7 +97,8 @@
 		flex: 1;
 		min-width: 0;
 		font-size: 12px;
-		padding: 3px 6px;
+		padding-block: 3px;
+		padding-left: 6px;
 	}
 	.spacer {
 		flex: 1;

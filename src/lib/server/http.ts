@@ -1,4 +1,3 @@
-import { json } from '@sveltejs/kit';
 import { StoreError } from './store';
 import { ConfigError } from './runner';
 
@@ -6,12 +5,12 @@ import { ConfigError } from './runner';
 export async function handle<T>(fn: () => Promise<T>): Promise<Response> {
 	try {
 		const out = await fn();
-		return out instanceof Response ? out : json(out ?? { ok: true });
+		return out instanceof Response ? out : Response.json(out ?? { ok: true });
 	} catch (err) {
-		if (err instanceof StoreError) return json({ error: err.message }, { status: err.status });
-		if (err instanceof ConfigError) return json({ error: err.message }, { status: 500 });
+		if (err instanceof StoreError) return Response.json({ error: err.message }, { status: err.status });
+		if (err instanceof ConfigError) return Response.json({ error: err.message }, { status: 500 });
 		console.error(err);
-		return json({ error: (err as Error).message ?? String(err) }, { status: 500 });
+		return Response.json({ error: (err as Error).message ?? String(err) }, { status: 500 });
 	}
 }
 

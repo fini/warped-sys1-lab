@@ -1,11 +1,10 @@
-import { json } from '@sveltejs/kit';
 import { TypeSafeError } from '@typesafe-ai/sdk';
-import { handle, readBody } from '$lib/server/http';
-import { getClient } from '$lib/server/jev';
-import { runExperiment } from '$lib/server/runner';
-import { saveResult } from '$lib/server/store';
-import { isValidName } from '$lib/validate';
-import type { Experiment, RunInputs } from '$lib/types';
+import { handle, readBody } from '#lib/server/http.ts';
+import { getClient } from '#lib/server/jev.ts';
+import { runExperiment } from '#lib/server/runner.ts';
+import { saveResult } from '#lib/server/store.ts';
+import { isValidName } from '#lib/validate.ts';
+import type { Experiment, RunInputs } from '#lib/types.ts';
 
 /** Run the posted experiment (the editor's current contents, saved or not) with the posted input values. */
 export const POST = ({ request }) =>
@@ -18,7 +17,7 @@ export const POST = ({ request }) =>
 			await saveResult(result);
 			return result;
 		} catch (err) {
-			if (err instanceof TypeSafeError) return json({ error: err.message }, { status: 422 });
+			if (err instanceof TypeSafeError) return Response.json({ error: err.message }, { status: 422 });
 			throw err;
 		}
 	});

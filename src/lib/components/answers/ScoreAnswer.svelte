@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Bar from './Bar.svelte';
-	import { show } from '$lib/format';
-	import type { ScoreAnswer } from '$lib/types';
+	import { show } from '#lib/format.ts';
+	import type { ScoreAnswer } from '#lib/types.ts';
 
 	let { answer }: { answer: ScoreAnswer } = $props();
 

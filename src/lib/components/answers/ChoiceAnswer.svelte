@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Bar from './Bar.svelte';
-	import { show } from '$lib/format';
-	import type { ChoiceAnswer, ChoiceQuestion } from '$lib/types';
+	import { show } from '#lib/format.ts';
+	import type { ChoiceAnswer, ChoiceQuestion } from '#lib/types.ts';
 
 	let { answer, question }: { answer: ChoiceAnswer; question?: ChoiceQuestion } = $props();
 

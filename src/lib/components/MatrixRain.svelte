@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fx } from '$lib/fx.svelte';
+	import { fx } from '#lib/fx.svelte.ts';
 
 	let canvas: HTMLCanvasElement;
 

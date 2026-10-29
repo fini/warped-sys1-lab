@@ -85,8 +85,9 @@ button.danger {
 }
 button.icon {
 	border: none;
-	padding: 2px 5px;
-	font-size: 12px;
+	padding: 2px 6px;
+	font-size: 18px;
+	line-height: 1;
 }
 
 input,
@@ -95,6 +96,14 @@ select {
 	border: 1px solid var(--line-strong);
 	padding: 4px 8px;
 	outline: none;
+}
+select {
+	appearance: none;
+	padding-right: 28px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%2300ff41' stroke-width='1.6'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 9px center;
+	background-size: 12px;
 }
 input:focus,
 select:focus {

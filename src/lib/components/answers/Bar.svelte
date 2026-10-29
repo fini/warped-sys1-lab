@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pct } from '$lib/format';
+	import { pct } from '#lib/format.ts';
 
 	let {
 		label,

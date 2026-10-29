@@ -1,5 +1,5 @@
-import { handle, readBody } from '$lib/server/http';
-import { deleteInputSet, readInputSet, writeInputSet } from '$lib/server/store';
+import { handle, readBody } from '#lib/server/http.ts';
+import { deleteInputSet, readInputSet, writeInputSet } from '#lib/server/store.ts';
 
 export const GET = ({ params }) => handle(() => readInputSet(params.project, params.set));
 

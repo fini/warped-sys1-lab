@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ViewRow } from '$lib/views';
+	import type { ViewRow } from '#lib/views.ts';
 
 	let { title, rows }: { title: string; rows: ViewRow[] } = $props();
 </script>

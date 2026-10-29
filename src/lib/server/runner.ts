@@ -42,7 +42,7 @@ async function runCase(client: TypeSafeClient, exp: Experiment, c: ExperimentCas
 	const started = performance.now();
 	try {
 		const res = await client.systemOne({
-			state: c.state as EntryType,
+			state: c.state as NonNullable<EntryType>,
 			questions: exp.questions as unknown as Questions,
 			...(exp.model ? { model: exp.model } : {})
 		});

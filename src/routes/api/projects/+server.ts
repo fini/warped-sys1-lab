@@ -1,5 +1,5 @@
-import { handle, readBody } from '$lib/server/http';
-import { createProject } from '$lib/server/store';
+import { handle, readBody } from '#lib/server/http.ts';
+import { createProject } from '#lib/server/store.ts';
 
 export const POST = ({ request }) =>
 	handle(async () => {

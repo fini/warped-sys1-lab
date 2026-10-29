@@ -1,5 +1,5 @@
-import { handle, readBody } from '$lib/server/http';
-import { renameExperiment } from '$lib/server/store';
+import { handle, readBody } from '#lib/server/http.ts';
+import { renameExperiment } from '#lib/server/store.ts';
 
 export const POST = ({ params, request }) =>
 	handle(async () => {

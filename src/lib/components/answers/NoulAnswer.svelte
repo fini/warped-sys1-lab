@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { pct } from '$lib/format';
-	import type { NoulAnswer } from '$lib/types';
+	import { pct } from '#lib/format.ts';
+	import type { NoulAnswer } from '#lib/types.ts';
 
 	let { answer }: { answer: NoulAnswer } = $props();
 	const yes = $derived(answer.noul >= 0.5);

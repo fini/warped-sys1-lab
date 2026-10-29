@@ -85,7 +85,7 @@ export interface CaseRun {
 	case: string;
 	model?: string;
 	answers?: Record<string, Answer>;
-	usage?: { input_tokens: number; output_tokens: number };
+	usage?: { input_tokens: number | null; output_tokens: number | null };
 	latencyMs: number;
 	error?: RunError;
 }

@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
-	import ProjectTree, { type TreeAction } from '$lib/components/ProjectTree.svelte';
-	import JsonEditor from '$lib/components/JsonEditor.svelte';
-	import ResultsPanel from '$lib/components/ResultsPanel.svelte';
-	import InputsPanel from '$lib/components/InputsPanel.svelte';
-	import Modal, { type ModalField, type ModalRequest } from '$lib/components/Modal.svelte';
-	import { api, ApiError } from '$lib/api';
-	import { parseJson } from '$lib/format';
-	import { fx } from '$lib/fx.svelte';
-	import { findPlaceholders, missingInputs, usedInputs } from '$lib/inputs';
-	import { isValidName, newExperimentTemplate, validateExperiment } from '$lib/validate';
-	import type { InputValues, ModelInfo, ProjectNode, ResultSummary, RunResult } from '$lib/types';
+	import ProjectTree, { type TreeAction } from '#lib/components/ProjectTree.svelte';
+	import JsonEditor from '#lib/components/JsonEditor.svelte';
+	import ResultsPanel from '#lib/components/ResultsPanel.svelte';
+	import InputsPanel from '#lib/components/InputsPanel.svelte';
+	import Modal, { type ModalField, type ModalRequest } from '#lib/components/Modal.svelte';
+	import { api, ApiError } from '#lib/api.ts';
+	import { parseJson } from '#lib/format.ts';
+	import { fx } from '#lib/fx.svelte.ts';
+	import { findPlaceholders, missingInputs, usedInputs } from '#lib/inputs.ts';
+	import { isValidName, newExperimentTemplate, validateExperiment } from '#lib/validate.ts';
+	import type { InputValues, ModelInfo, ProjectNode, ResultSummary, RunResult } from '#lib/types.ts';
 
 	let { data } = $props();
 
@@ -718,7 +718,8 @@
 	}
 	.model select {
 		font-size: 12px;
-		padding: 3px 6px;
+		padding-block: 3px;
+		padding-left: 6px;
 	}
 	.status {
 		font-size: 12px;
